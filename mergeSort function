@@ -1,0 +1,27 @@
+def mergeSort(array):
+    temp = []
+    if(len(array) <= 1):
+        return array
+    
+    halfWay = len(array) // 2
+    bottom = mergeSort(array[:halfWay])
+    top = mergeSort(array[halfWay:])
+    bottomLen = len(bottom)
+    topLen = len(top)
+    i = 0
+    j = 0
+    
+    while i != bottomLen or j != topLen:
+        if(i != bottomLen and (j == topLen or bottom[i] < top[j])):
+            temp.append(bottom[i])
+            i += 1
+        else:
+            temp.append(top[j])
+            j += 1
+        
+    return temp
+    
+    
+array = [10, 7, 14, 2, 5, 12, 17, 9, 0, 1]
+ar = mergeSort(array)
+print(" ".join(str(x) for x in ar))
